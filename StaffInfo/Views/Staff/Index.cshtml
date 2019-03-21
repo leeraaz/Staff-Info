@@ -1,0 +1,25 @@
+﻿@{ 
+    @Html.Partial("_AdminNavBar")
+}
+@Scripts.Render("~/Scripts/js")
+<h2>Staff Details</h2>   
+<a class="btn btn-outline-dark btn-sm" style="margin-bottom:10px" onclick="StaffForm('@Url.Action("StaffRegister","Staff")')"><i class="fa fa-plus"></i> Add New</a>
+<table id="staffTable" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Branch</th>
+            <th>Department</th>
+            <th>Degination</th>
+            <th>Extension No.</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
+@section scripts{
+   
+<script src="~/Scripts/Staff_JS/Admin_JS.js"></script>
+    }

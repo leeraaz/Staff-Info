@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="STAFFINFOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Address_Code" />
+    </Key>
+    <Property Name="Address_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Place_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mun_VDC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Ward_No" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Branches" Relationship="Self.FK_Branch_Branch" FromRole="Address" ToRole="Branch" />
+    <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Address" FromRole="Address" ToRole="Staff" />
+    <NavigationProperty Name="Staffs1" Relationship="Self.FK_Staff_Address1" FromRole="Address" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="Branch_Code" />
+    </Key>
+    <Property Name="Branch_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Branch_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone_Num" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone_Num2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Address" Relationship="Self.FK_Branch_Branch" FromRole="Branch" ToRole="Address" />
+    <NavigationProperty Name="Branch_Department" Relationship="Self.FK_Branch_Department_Branch" FromRole="Branch" ToRole="Branch_Department" />
+  </EntityType>
+  <EntityType Name="Branch_Department">
+    <Key>
+      <PropertyRef Name="Branch_Dept_Code" />
+    </Key>
+    <Property Name="Branch_Dept_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Branch_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Department_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Extension_No" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_Branch_Department_Branch" FromRole="Branch_Department" ToRole="Branch" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Branch_Department_Department" FromRole="Branch_Department" ToRole="Department" />
+    <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Branch_Department" FromRole="Branch_Department" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Department_ID" />
+    </Key>
+    <Property Name="Department_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Department_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Branch_Department" Relationship="Self.FK_Branch_Department_Department" FromRole="Department" ToRole="Branch_Department" />
+  </EntityType>
+  <EntityType Name="Job_Title">
+    <Key>
+      <PropertyRef Name="Job_Title_Code" />
+    </Key>
+    <Property Name="Job_Title_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Minimum_Salary" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="Maximum_Salary" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="Actual_Salary" Type="Decimal" Precision="10" Scale="0" />
+    <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Job_Title" FromRole="Job_Title" ToRole="Staff" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="Staff_ID" />
+    </Key>
+    <Property Name="Staff_ID" Type="Int32" Nullable="false" />
+    <Property Name="First_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Middle_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Mbl" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Contact_Phn" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Temporary_Address" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Permanent_Address" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Qualification" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Job_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Branch_Department_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Address" Relationship="Self.FK_Staff_Address" FromRole="Staff" ToRole="Address" />
+    <NavigationProperty Name="Address1" Relationship="Self.FK_Staff_Address1" FromRole="Staff" ToRole="Address" />
+    <NavigationProperty Name="Branch_Department" Relationship="Self.FK_Staff_Branch_Department" FromRole="Staff" ToRole="Branch_Department" />
+    <NavigationProperty Name="Job_Title" Relationship="Self.FK_Staff_Job_Title" FromRole="Staff" ToRole="Job_Title" />
+  </EntityType>
+  <Association Name="FK_Branch_Branch">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Address_Code" />
+      </Principal>
+      <Dependent Role="Branch">
+        <PropertyRef Name="Address_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Address">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Address_Code" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="Temporary_Address" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Address1">
+    <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Address_Code" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="Permanent_Address" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Branch_Department_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Branch_Department" Type="Self.Branch_Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Branch_Code" />
+      </Principal>
+      <Dependent Role="Branch_Department">
+        <PropertyRef Name="Branch_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Branch_Department_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Branch_Department" Type="Self.Branch_Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Department_ID" />
+      </Principal>
+      <Dependent Role="Branch_Department">
+        <PropertyRef Name="Department_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Branch_Department">
+    <End Role="Branch_Department" Type="Self.Branch_Department" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch_Department">
+        <PropertyRef Name="Branch_Dept_Code" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="Branch_Department_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Staff_Job_Title">
+    <End Role="Job_Title" Type="Self.Job_Title" Multiplicity="0..1" />
+    <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job_Title">
+        <PropertyRef Name="Job_Title_Code" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="Job_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="STAFFINFOEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="Branches" EntityType="Self.Branch" />
+    <EntitySet Name="Branch_Department" EntityType="Self.Branch_Department" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Job_Title" EntityType="Self.Job_Title" />
+    <EntitySet Name="Staffs" EntityType="Self.Staff" />
+    <AssociationSet Name="FK_Branch_Branch" Association="Self.FK_Branch_Branch">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="Branch" EntitySet="Branches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Address" Association="Self.FK_Staff_Address">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="Staff" EntitySet="Staffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Address1" Association="Self.FK_Staff_Address1">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="Staff" EntitySet="Staffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Branch_Department_Branch" Association="Self.FK_Branch_Department_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Branch_Department" EntitySet="Branch_Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Branch_Department_Department" Association="Self.FK_Branch_Department_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Branch_Department" EntitySet="Branch_Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Branch_Department" Association="Self.FK_Staff_Branch_Department">
+      <End Role="Branch_Department" EntitySet="Branch_Department" />
+      <End Role="Staff" EntitySet="Staffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Staff_Job_Title" Association="Self.FK_Staff_Job_Title">
+      <End Role="Job_Title" EntitySet="Job_Title" />
+      <End Role="Staff" EntitySet="Staffs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

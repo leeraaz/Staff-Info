@@ -1,0 +1,91 @@
+﻿@using StaffInfo.Models
+@model BlogModel
+@{ 
+    @Html.Partial("_Blog");
+    Layout = null;
+}
+
+<script src="~/Scripts/plugins/ckeditor/ckeditor.js"></script>>
+
+<script>
+    $(function () {
+        $('#PUBLISHED_DATE').datepicker(
+    {
+        dateFormat: 'dd-mm-yy',
+        changeMonth: true,
+        changeYear: true,
+        yearRange: '1950:2100'
+    });
+    });
+</script>
+<div class="wrapper">
+    <div class="content-wrapper">
+        @using (Html.BeginForm("Posts", "Blog", FormMethod.Post, new { onsubmit = "return AddBlog(this)", @class = "form-horizontal", role = "form" }))
+        {
+            @Html.HiddenFor(model => model.BLOG_ID)
+            <input type="hidden" class="form-control col-md-2 form-control-sm" value=@Session["Staff_ID"] name="STAFF_ID" id="STAFF_ID" readonly="readonly" />
+            <div class="form-group form-control-sm">
+                <div class="form-row">
+                    @Html.LabelFor(model => model.TITLE, "Title", new { @class = "col-md-1" })
+                    @Html.TextBoxFor(model => model.TITLE, null, new { @class = "form-control col form-control-sm" })
+                    @Html.ValidationMessageFor(model => model.TITLE)
+                </div>
+            </div>
+            <div class="form-group form-control-sm">
+                <div class="form-row ">
+                    @Html.LabelFor(model => model.BLOG_BODY, "Post", new { @class = "col-md-1" })
+                    @Html.TextAreaFor(model => model.BLOG_BODY)
+                    @Html.ValidationMessageFor(model => model.BLOG_BODY)
+                </div>
+            </div>
+            <div style="margin-bottom:310px"></div>
+            <div class="form-group form-control-sm">
+                <div class="form-row">
+                    @Html.LabelFor(model => model.PUBLISHED_DATE, "Date", new { @class = "col-md-1" })
+                    @Html.EditorFor(model => model.PUBLISHED_DATE, new { @class = "datepicker form-control col form-control-sm" })
+                    <i class="fa fa-calendar"></i>
+                </div>  
+            </div>
+            <div class="form-group form-control-sm">
+                <div class="form-row">
+                    @Html.LabelFor(model => model.PUBLISHED_BY, "Publish By", new { @class = "col-md-1" })
+                    <input type="text" class="form-control col-md-2 form-control-sm" value=@Session["First_Name"] name="PUBLISHED_BY" id="PUBLISHED_BY" readonly="readonly" />
+                </div>  
+            </div>
+            <hr />
+            <footer>
+                <div class="form-group form-control-sm">
+                    <input type="reset" class="btn float-right btn-outline-dark" value="Reset" style="margin-left:5px" />
+                    <input type="submit" class="btn float-right btn-outline-dark" value="Post" />
+                </div>
+            </footer>
+        }
+    </div>
+</div>
+<script>
+    function AddBlog(form) {
+        $.validator.unobtrusive.parse(form);
+        if ($(form).valid()) {
+            $.ajax({
+                type: "POST",
+                url: form.action,
+                data: $(form).serialize(),
+                success: function (data) {
+                    if (data.success) {
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+                        })
+                    }
+                }
+            })
+            return false;
+        }
+        return false;
+    }
+    ClassicEditor
+        .create(document.querySelector('#BLOG_BODY'))
+        .catch( error => {
+            console.error( error );
+        } );
+</script>

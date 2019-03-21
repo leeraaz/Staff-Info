@@ -1,0 +1,61 @@
+﻿
+@using StaffInfo.Models
+@model JobTitle
+    @{ 
+        Layout = null;
+    }
+@Scripts.Render("~/Scripts/js")
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/notify.min.js"></script>
+@using (Html.BeginForm("AddJobTitle", "Admin", FormMethod.Post, new {onsubmit = "return AddJob(this)", @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(model => model.Job_Title_Code, "Job Code", new { @class = "col-md-3" })
+            @Html.TextBoxFor(model => model.Job_Title_Code, null, new { @class = "form-control col form-control-sm" })
+            @Html.ValidationMessageFor(model => model.Job_Title_Code)
+        </div>
+    </div>
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(model => model.Position, "Position", new { @class = "col-md-3" })
+
+            @Html.TextBoxFor(model => model.Position, null, new { @class = "form-control col form-control-sm" })
+            @Html.ValidationMessageFor(model => model.Position)
+        </div>
+
+    </div>
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(model => model.Minimum_Salary, "Minimum Salary", new { @class = "col-md-3" })
+
+            @Html.TextBoxFor(model => model.Minimum_Salary, null, new { @class = "form-control col form-control-sm" })
+            @Html.ValidationMessageFor(model => model.Minimum_Salary)
+        </div>
+    </div>
+        <div class="form-group form-control-sm">
+            <div class="form-row">
+                @Html.LabelFor(model => model.Maximum_Salary, "Maximum Salary", new { @class = "col-md-3" })
+
+                @Html.TextBoxFor(model => model.Maximum_Salary, null, new { @class = "form-control col form-control-sm" })
+                @Html.ValidationMessageFor(model => model.Maximum_Salary)
+            </div>
+        </div>
+        <div class="form-group form-control-sm">
+            <div class="form-row">
+                @Html.LabelFor(model => model.Actual_Salary, "Actual Salary", new { @class = "col-md-3" })
+
+                @Html.TextBoxFor(model => model.Actual_Salary, null, new { @class = "form-control col form-control-sm" })
+                @Html.ValidationMessageFor(model => model.Actual_Salary)
+            </div>
+        </div>
+        <hr />
+        <footer>
+            <div class="form-group form-control-sm">
+                <input type="reset" class="btn float-right btn-outline-dark" value="Reset" style="margin-left:5px" />
+                <input type="submit" class="btn float-right btn-outline-dark" value="Register" />
+            </div>
+        </footer>
+        
+        
+}

@@ -1,0 +1,39 @@
+﻿
+@using StaffInfo.Models
+@model StaffModel
+    @{ 
+        Layout = null;
+    }
+@Scripts.Render("~/Scripts/js")
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/notify.min.js"></script>
+@using (Html.BeginForm("AddStaffExtension", "Staff", FormMethod.Post, new { onsubmit = "return ExtensionAdd(this)", @class = "form-horizontal", role = "form" }))
+{
+    @Html.HiddenFor(model => model.Extension_ID)
+    @Html.HiddenFor(model => model.Staff_ID)
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(model => model.Extension_Num, "Extension Number", new { @class = "col-md-3" })
+
+            @Html.TextBoxFor(model => model.Extension_Num, null, new { @class = "form-control col form-control-sm" })
+            @Html.ValidationMessageFor(model => model.Extension_Num)
+        </div>
+    </div>
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(model => model.Extension_Num2, "Extension Number 2", new { @class = "col-md-3" })
+
+            @Html.TextBoxFor(model => model.Extension_Num2, null, new { @class = "form-control col form-control-sm" })
+        </div>
+    </div>
+    <br />
+    
+    <text>If there is another extension you can fill up multiple.</text>
+    <hr />
+    <footer>
+        <div class="form-group form-control-sm">
+            <input type="reset" class="btn float-right btn-outline-dark" value="Reset" style="margin-left:5px" />
+            <input type="submit" class="btn float-right btn-outline-dark" value="Register" />
+        </div>
+    </footer> 
+}

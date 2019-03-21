@@ -1,0 +1,106 @@
+﻿
+@using StaffInfo.Models
+@model StaffModel
+@{ 
+    Layout = null;
+}
+@Scripts.Render("~/Scripts/js")
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/notify.min.js"></script>
+@using (Html.BeginForm("StaffRegister", "Staff", FormMethod.Post, new { onsubmit = "return StaffRegister(this)", @class = "form-horizontal", role = "form" }))
+{
+    <div class="container">
+
+        @Html.HiddenFor(model => model.Staff_ID)
+        <div class="form-row">
+            <div class="form-group col-2 form-control-sm">
+                @Html.Label("Full Name")
+            </div>
+            <div class="form-group col form-control-sm">
+                @Html.TextBoxFor(model => model.First_Name, null, new { @class = "form-control form-control-sm", placeholder="First Name" })
+                @Html.ValidationMessageFor(model => model.First_Name)
+            </div>
+            <div class="form-group col form-control-sm">
+                @Html.TextBoxFor(model => model.Middle_Name, null, new { @class = "form-control form-control-sm", placeholder="Middle Name" })
+            </div>
+            <div class="form-group col form-control-sm">
+                @Html.TextBoxFor(model => model.Last_Name, null, new { @class = "form-control form-control-sm", placeholder="Last Name" })
+                @Html.ValidationMessageFor(model => model.Last_Name)
+            </div>
+        </div>
+        <div class="form-group form-control-sm">
+            <div class="form-row">
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.Gender)
+                    @Html.ValidationMessageFor(model => model.Gender)
+                </div>
+                <div class="col form-check-inline">
+                    @Html.RadioButtonFor(model => model.Gender, "Male", new { style = "margin-right:10px" })<text>Male </text>
+                    @Html.RadioButtonFor(model => model.Gender, "Female", new { style = "margin-right:10px; margin-left:10px" })<text>Female</text>
+                    @Html.RadioButtonFor(model => model.Gender, "Other", new { style = "margin-right:10px; margin-left:10px" })<text>Other</text>
+                </div>
+            </div>
+            
+        </div>
+        <div class="form-group ">
+            <div class="form-row">
+                @Html.Label("Contacts", new { @class="col-2 form-control-sm", style = "margin-top:5px" })
+
+                @Html.TextBoxFor(model => model.Primary_Number, null, new { @class = "form-control col form-control-sm", @placeholder = "Mobile", style = "margin-top:3px" })
+                @Html.ValidationMessageFor(model => model.Primary_Number)
+
+                @Html.TextBoxFor(model => model.Secondary_Number, null, new { @class = "form-control col form-control-sm", placeholder = "Phone", style = "margin-top:3px; margin-left:10px" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                @Html.LabelFor(model => model.Email, "E-mail", new { @class = "col-2 col-form-label col-form-label-sm" })
+
+                @Html.TextBoxFor(model => model.Email, null, new { @class = "form-control form-control-sm col", placeholder="abc@sunrisebank.com.np" })
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-row">
+                @Html.Label("Address", new { @class = "col-2 form-control-sm", style = "margin-top:5px" })
+
+                @Html.TextBoxFor(model => model.Temporary_Address, null, new { @class = "form-control col form-control-sm", @placeholder = "Temporary Address", style = "margin-top:3px" })
+                @Html.ValidationMessageFor(model => model.Temporary_Address)
+
+                @Html.TextBoxFor(model => model.Permanent_Address, null, new { @class = "form-control col form-control-sm", placeholder = "Permanent Address", style = "margin-top:3px; margin-left:10px" })
+                @Html.ValidationMessageFor(model => model.Permanent_Address)
+            </div>
+        </div>
+            <div class="form-group">
+                <div class="form-row">
+                    @Html.LabelFor(model => model.Qualification, "Qualification", new { @class="form-control-sm col-2"})
+                    @Html.TextBoxFor(model => model.Qualification, null, new { @class = "form-control form-control-sm col", placeholder="Academic Certification" })
+                    @Html.ValidationMessageFor(model => model.Qualification)
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4 form-control-sm">
+                    @Html.LabelFor(model => model.Job_Code, "Job Title")
+                    @Html.DropDownListFor(model => model.Job_Code, ViewData["jobList"] as SelectList, new { @class = "form-control form-control-sm" })
+                    @Html.ValidationMessageFor(model => model.Job_Code)
+                </div>
+                <div class="form-group col-md-4 form-control-sm">
+                    @Html.LabelFor(model => model.Branch_Code, "Branch Code")
+                    @Html.DropDownListFor(model => model.Branch_Code, ViewData["branchlist"] as SelectList, new { @class = "form-control form-control-sm" })
+                    @Html.ValidationMessageFor(model => model.Branch_Code)
+                </div>
+                <div class="form-group col-md-4 form-control-sm">
+                    @Html.LabelFor(model => model.Department_ID, "Deparment ID")
+                    @Html.DropDownListFor(model => model.Department_ID, ViewData["deptlist"] as SelectList, new { @class = "form-control form-control-sm" })
+                    @Html.ValidationMessageFor(model => model.Department_ID)
+                </div>
+            </div>
+       
+        <footer>
+            <br />
+            <hr />
+            <input type="reset" class="btn float-right btn-outline-dark btn-group-sm" value="Reset" style="margin-left:5px" />
+            <input type="submit" class="btn float-right btn-outline-dark btn-group-ssssm" value="Submit" />
+        </footer>
+    </div>
+}

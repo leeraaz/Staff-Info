@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="STAFFINFOModelStoreContainer" CdmEntityContainer="STAFFINFOEntities1">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="STAFFINFOModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="Address_Code" ColumnName="Address_Code" />
+          <ScalarProperty Name="Place_name" ColumnName="Place_name" />
+          <ScalarProperty Name="Mun_VDC" ColumnName="Mun_VDC" />
+          <ScalarProperty Name="Ward_No" ColumnName="Ward_No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="STAFFINFOModel.Branch">
+        <MappingFragment StoreEntitySet="Branch">
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch_Code" />
+          <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+          <ScalarProperty Name="Address_Code" ColumnName="Address_Code" />
+          <ScalarProperty Name="Telephone_Num" ColumnName="Telephone_Num" />
+          <ScalarProperty Name="Telephone_Num2" ColumnName="Telephone_Num2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branch_Department">
+      <EntityTypeMapping TypeName="STAFFINFOModel.Branch_Department">
+        <MappingFragment StoreEntitySet="Branch_Department">
+          <ScalarProperty Name="Branch_Dept_Code" ColumnName="Branch_Dept_Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch_Code" />
+          <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+          <ScalarProperty Name="Extension_No" ColumnName="Extension_No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="STAFFINFOModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+          <ScalarProperty Name="Department_Name" ColumnName="Department_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Job_Title">
+      <EntityTypeMapping TypeName="STAFFINFOModel.Job_Title">
+        <MappingFragment StoreEntitySet="Job_Title">
+          <ScalarProperty Name="Job_Title_Code" ColumnName="Job_Title_Code" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Minimum_Salary" ColumnName="Minimum_Salary" />
+          <ScalarProperty Name="Maximum_Salary" ColumnName="Maximum_Salary" />
+          <ScalarProperty Name="Actual_Salary" ColumnName="Actual_Salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="STAFFINFOModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Contact_Mbl" ColumnName="Contact_Mbl" />
+          <ScalarProperty Name="Contact_Phn" ColumnName="Contact_Phn" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Temporary_Address" ColumnName="Temporary_Address" />
+          <ScalarProperty Name="Permanent_Address" ColumnName="Permanent_Address" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="Job_Code" ColumnName="Job_Code" />
+          <ScalarProperty Name="Branch_Department_Code" ColumnName="Branch_Department_Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

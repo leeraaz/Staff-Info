@@ -1,0 +1,20 @@
+﻿
+@{
+    @Html.Partial("_AdminNavBar");
+}
+<h2>Address Details</h2>
+<a class="btn btn-outline-dark btn-sm" style="margin-bottom:10px" onclick="AddressForm('@Url.Action("AddAddress","Admin")')"><i class="fa fa-plus"></i> Add New</a>
+
+<table id="addressTable" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>Place Name</th>
+            <th>Municipali / VDC</th>
+            <th>Ward Number</th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
+@section scripts{
+    <script src="~/Scripts/Staff_JS/Admin_JS.js"></script>
+}

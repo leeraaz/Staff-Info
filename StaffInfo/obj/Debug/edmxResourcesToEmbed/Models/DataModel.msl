@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBProcedureStoreContainer" CdmEntityContainer="STAFFINFOEntities2">
+    <FunctionImportMapping FunctionImportName="STAFF_DETAILS" FunctionName="DBProcedure.Store.STAFF_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBProcedure.STAFF_DETAILS_Result">
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
+          <ScalarProperty Name="BRANCH_NAME" ColumnName="BRANCH_NAME" />
+          <ScalarProperty Name="DEPARTMENT_NAME" ColumnName="DEPARTMENT_NAME" />
+          <ScalarProperty Name="POSITION" ColumnName="POSITION" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

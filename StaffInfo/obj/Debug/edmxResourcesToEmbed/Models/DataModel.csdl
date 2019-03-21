@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBProcedure" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="STAFFINFOEntities2" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="STAFF_DETAILS" ReturnType="Collection(DBProcedure.STAFF_DETAILS_Result)" />
+  </EntityContainer>
+  <ComplexType Name="STAFF_DETAILS_Result">
+    <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PLACE_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BRANCH_NAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DEPARTMENT_NAME" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="POSITION" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

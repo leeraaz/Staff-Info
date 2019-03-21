@@ -1,0 +1,58 @@
+﻿
+@using StaffInfo.Models
+@{ 
+    Layout = null;
+}
+@model BranchModel
+@Scripts.Render("~/Scripts/js")
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/notify.min.js"></script>
+@using (Html.BeginForm("AddBranch", "Admin", FormMethod.Post, new { onsubmit = "return AddBranch(this)", @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(model => model.Branch_Code, "Branch Code", new { @class = "col-md-3" })
+            @Html.TextBoxFor(model => model.Branch_Code, null, new { @class = "form-control col form-control-sm", placeholder = "Branch Code" })
+            @Html.ValidationMessageFor(model => model.Branch_Code)
+        </div>
+        
+    </div>
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(model => model.Branch_Name, "Branch Name", new { @class = "col-md-3" })
+            @Html.TextBoxFor(model => model.Branch_Name, null, new { @class = "form-control col form-control-sm", placeholder ="Branch Name" })
+            @Html.ValidationMessageFor(model => model.Branch_Name)
+        </div>
+       
+    </div>
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(model => model.Address_Code, "Address", new { @class = "col-md-3" })
+            @Html.TextBoxFor(model => model.Address_Code, new { @class = "form-control col form-control-sm" , placeholder = "Branch Address"})
+            @Html.ValidationMessageFor(model => model.Address_Code)
+        </div>
+        
+    </div>
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(model => model.Primary_Number, "Telephone Number", new { @class = "col-md-3" })
+
+            @Html.TextBoxFor(model => model.Primary_Number, null, new { @class = "form-control col form-control-sm", placeholder ="Primary Number" })
+            @Html.ValidationMessageFor(model => model.Primary_Number)
+        </div>
+    </div>
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(model => model.Secondary_Number, "Telephone Number", new { @class = "col-md-3"})
+
+            @Html.TextBoxFor(model => model.Secondary_Number, null, new { @class = "form-control col form-control-sm", placeholder = "Secondary Number" })
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <div class="form-group form-control-sm">
+            <input type="reset" class="btn float-right btn-outline-dark" value="Reset" style="margin-left:5px"/>
+                <input type="submit" class="btn float-right btn-outline-dark" value="Register" />
+        </div>
+    </footer>
+}

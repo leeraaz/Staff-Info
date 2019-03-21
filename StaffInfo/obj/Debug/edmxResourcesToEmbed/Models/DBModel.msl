@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabasModel">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="DatabaseModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Address_Code" ColumnName="Address_Code" />
+          <ScalarProperty Name="Place_name" ColumnName="Place_name" />
+          <ScalarProperty Name="Mun_VDC" ColumnName="Mun_VDC" />
+          <ScalarProperty Name="Ward_No" ColumnName="Ward_No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="DatabaseModel.Branch">
+        <MappingFragment StoreEntitySet="Branch">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch_Code" />
+          <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+          <ScalarProperty Name="Address_Code" ColumnName="Address_Code" />
+          <ScalarProperty Name="Primary_Number" ColumnName="Primary_Number" />
+          <ScalarProperty Name="Secondary_Number" ColumnName="Secondary_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="DatabaseModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+          <ScalarProperty Name="Department_Name" ColumnName="Department_Name" />
+          <ScalarProperty Name="Primary_Number" ColumnName="Primary_Number" />
+          <ScalarProperty Name="Secondary_Number" ColumnName="Secondary_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Job_Title">
+      <EntityTypeMapping TypeName="DatabaseModel.Job_Title">
+        <MappingFragment StoreEntitySet="Job_Title">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Job_Title_Code" ColumnName="Job_Title_Code" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Minimum_Salary" ColumnName="Minimum_Salary" />
+          <ScalarProperty Name="Maximum_Salary" ColumnName="Maximum_Salary" />
+          <ScalarProperty Name="Actual_Salary" ColumnName="Actual_Salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="DatabaseModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Primary_Number" ColumnName="Primary_Number" />
+          <ScalarProperty Name="Secondary_Number" ColumnName="Secondary_Number" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Temporary_Address" ColumnName="Temporary_Address" />
+          <ScalarProperty Name="Permanent_Address" ColumnName="Permanent_Address" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="Job_Code" ColumnName="Job_Code" />
+          <ScalarProperty Name="Branch_Code" ColumnName="Branch_Code" />
+          <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff_Extensions">
+      <EntityTypeMapping TypeName="DatabaseModel.Staff_Extensions">
+        <MappingFragment StoreEntitySet="Staff_Extensions">
+          <ScalarProperty Name="Extension_ID" ColumnName="Extension_ID" />
+          <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+          <ScalarProperty Name="Extension_Num" ColumnName="Extension_Num" />
+          <ScalarProperty Name="Extension_Num2" ColumnName="Extension_Num2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="STAFF_DETAILS" FunctionName="DatabaseModel.Store.STAFF_DETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DatabaseModel.STAFF_DETAILS_Result">
+          <ScalarProperty Name="STAFF_ID" ColumnName="STAFF_ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
+          <ScalarProperty Name="BRANCH_NAME" ColumnName="BRANCH_NAME" />
+          <ScalarProperty Name="DEPARTMENT_NAME" ColumnName="DEPARTMENT_NAME" />
+          <ScalarProperty Name="POSITION" ColumnName="POSITION" />
+          <ScalarProperty Name="EXTENSION_NUM" ColumnName="EXTENSION_NUM" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="BRANCHDATA" FunctionName="DatabaseModel.Store.BRANCHDATA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DatabaseModel.BRANCHDATA_Result">
+          <ScalarProperty Name="BRANCH_NAME" ColumnName="BRANCH_NAME" />
+          <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
+          <ScalarProperty Name="PRIMARY_NUMBER" ColumnName="PRIMARY_NUMBER" />
+          <ScalarProperty Name="SECONDARY_NUMBER" ColumnName="SECONDARY_NUMBER" />
+          <ScalarProperty Name="BRANCH_CODE" ColumnName="BRANCH_CODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="BLOGs">
+      <EntityTypeMapping TypeName="DatabaseModel.BLOG">
+        <MappingFragment StoreEntitySet="BLOG">
+          <ScalarProperty Name="PUBLISHED_BY" ColumnName="PUBLISHED_BY" />
+          <ScalarProperty Name="PUBLISHED_DATE" ColumnName="PUBLISHED_DATE" />
+          <ScalarProperty Name="BLOG_BODY" ColumnName="BLOG_BODY" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="STAFF_ID" ColumnName="STAFF_ID" />
+          <ScalarProperty Name="BLOG_ID" ColumnName="BLOG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DatabaseModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
