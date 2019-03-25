@@ -1,0 +1,89 @@
+﻿@using StaffInfo.Models
+<script src="~/Scripts/plugins/ckeditor/ckeditor.js"></script>
+
+@using StaffInfo.Models
+@model CommentModel
+@Html.ActionLink("Back", "GetPost", "Blog")
+<h2>Blog</h2>
+@{
+    var item = (BLOG)ViewData["Blogs"];
+    var comt = new BlogController().GetComment(item.BLOG_ID);
+}
+<h2 class="text-center">@item.TITLE </h2>
+
+<textarea type="text" id="BLOG_BODY" name="BLOG_BODY" readonly>@item.BLOG_BODY</textarea>
+<text>@item.PUBLISHED_BY</text>
+<hr />
+<input class = "btn btn-info btn-xs like-button"
+    data - status = "true"
+    id = "Like" > Like < i class = "fa fa-thumbs-o-up" >
+<hr/>
+<h4>Comments</h4>
+@foreach (var cmt in comt)
+{
+    <div style="box-shadow:3px 1px 30px; width:50%">
+        <div style="padding:5px">
+            <strong>@cmt.Comment_By</strong> <br />
+            @cmt.Comment1
+        </div>
+    </div>
+}
+<hr />
+<h4>Comment Section</h4>
+@using (Html.BeginForm("AddComment", "Blog", FormMethod.Post, new { onsubmit="return AddComment(this)", @class= "form-horizontal", role="form", style= "box-shadow:3px 10px 15px orange; width:50%" }))
+{
+    @Html.HiddenFor(m => m.Comment_ID)
+    @Html.HiddenFor(m=>m.Blog_ID, new { @Value=@item.BLOG_ID})
+    <div class="form-group form-control-sm">
+        <div class="form-row">
+            @Html.LabelFor(m=>m.Comment_By, "Name", new { @class="form-control-sm col-md-2"})
+            @Html.TextBoxFor(m=>m.Comment_By, new { @Value=Session["First_Name"], @class="form-control col-md-2 form-control-sm", @readonly="readonly"})
+        </div>
+    </div>
+    <div class="form-group form-control-sm" style="height:100%">
+        <div class="form-row">
+            @Html.LabelFor(m=>m.Comment1, "Comment", new { @class="form-control-sm col-md-2"})
+            @Html.TextAreaFor(m=>m.Comment1, new { @class= "form-control", rows = "5" })
+            @Html.ValidationMessageFor(m=>m.Comment1)
+        </div>
+   </div>
+    @Html.HiddenFor(m=>m.Comment_Date, new { @Value=DateTime.Today.ToString("MM/dd/yyyy") })
+    <hr />
+    <div class="form-group btn-group-sm" style="padding:5px">
+            <input type="submit" value="Comment" name="Comment" id="Comment" class="btn btn-group-sm btn-outline-dark" />
+            <input type="reset" value="Reset" name="Reset" id="Reset" class="btn btn-group-sm btn-outline-dark" />
+    </div>
+}
+<script src="~/Scripts/notify.min.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#BLOG_BODY'))
+        .catch(error => {
+            console.error(error);
+        });
+
+    function AddComment(form){
+        $.validator.unobtrusive.parse(form);
+        if ($(form).valid()) {
+            $.ajax({
+                type: "POST",
+                url: form.action,
+                data: $(form).serialize(),
+                success: function (data) {
+                    if (data.success) {
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "success"
+                        })
+                    }
+                }
+            })
+            return false;
+        }
+        return false;
+    }
+
+    $(document).ajaxStop(function () {
+        window.location.reload();
+    });
+</script>
